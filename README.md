@@ -22,8 +22,8 @@ Modern ve etkileşimli bir "Hangisini Tercih Edersin?" oyunu. Next.js, Firebase 
 
 1. Repoyu klonlayın:
 ```bash
-git clone https://github.com/yourusername/would-you-rather-tr.git
-cd would-you-rather-tr
+git clone https://github.com/yigitatakan/omubumu.git
+cd omubumu
 ```
 
 2. Bağımlılıkları yükleyin:
