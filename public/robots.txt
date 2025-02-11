@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://would-you-rather-tr.vercel.app/sitemap.xml
