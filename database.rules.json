@@ -1,0 +1,43 @@
+{
+  "rules": {
+    "questions": {
+
+      ".read": true,
+
+      ".write": "auth != null && root.child('admins').child(auth.uid).exists()",
+      "$questionId": {
+
+        ".validate": "newData.hasChildren(['id', 'optionA', 'optionB', 'votesA', 'votesB'])",
+        "id": {
+          ".validate": "newData.isNumber()"
+        },
+        "optionA": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 500"
+        },
+        "optionB": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 500"
+        },
+        "votesA": {
+
+          ".validate": "newData.isNumber() && newData.val() >= 0",
+          ".write": true
+        },
+        "votesB": {
+
+          ".validate": "newData.isNumber() && newData.val() >= 0",
+          ".write": true
+        }
+      }
+    },
+    "admins": {
+
+      ".read": "auth != null && root.child('admins').child(auth.uid).exists()",
+
+      ".write": "auth != null && root.child('admins').child(auth.uid).exists()",
+      "$uid": {
+
+        ".validate": "newData.isBoolean()"
+      }
+    }
+  }
+}
