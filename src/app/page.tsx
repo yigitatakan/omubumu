@@ -171,16 +171,19 @@ export default function Home() {
   }
 
   return (
-    <main className={`h-screen w-screen ${isMobile ? 'flex flex-col' : 'flex'} overflow-hidden bg-gray-900`}>
+    <main className={`min-h-screen w-screen ${isMobile ? 'flex flex-col' : 'flex'} overflow-hidden bg-gradient-to-br from-gray-900 to-black relative`}>
+      {/* Arkaplan efekti */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+      
       <motion.div 
         className={`${
           isMobile ? 'h-[50vh]' : 'h-full'
-        } flex items-center justify-center bg-option-red relative ${
+        } flex items-center justify-center relative ${
           isMobile ? 'w-full' : isReversed ? 'absolute right-0' : 'absolute left-0'
         } ${
-          selectedOption === (isReversed ? 'A' : 'B') ? 'opacity-50' : ''
-        } ${
-          !answered && 'hover:shadow-lg hover:shadow-red-600/50'
+          selectedOption === (isReversed ? 'A' : 'B') ? 'opacity-60' : ''
+        } backdrop-blur-sm bg-red-500/20 border border-red-500/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] ${
+          !answered && 'hover:bg-red-500/30 transition-colors duration-300'
         }`}
         onClick={() => !answered && handleVote(isReversed ? 'B' : 'A')}
         whileHover={!answered ? { scale: 1.01 } : {}}
@@ -204,7 +207,7 @@ export default function Home() {
       >
         <div className="max-w-2xl px-6 md:px-8 text-center relative h-full flex flex-col items-center justify-center">
           <motion.h2 
-            className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 drop-shadow-lg"
+            className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -220,7 +223,7 @@ export default function Home() {
                 exit={{ opacity: 0, y: -20 }}
               >
                 <motion.p 
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ 
                     scale: 1, 
@@ -248,7 +251,9 @@ export default function Home() {
                     %
                   </motion.span>
                 </motion.p>
-                <p className="text-base sm:text-lg md:text-xl mt-2 opacity-90">{isReversed ? question.votesB : question.votesA} oy</p>
+                <p className="text-base sm:text-lg md:text-xl mt-3 opacity-80 font-medium tracking-wide">
+                  {isReversed ? question.votesB : question.votesA} oy
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -258,12 +263,12 @@ export default function Home() {
       <motion.div
         className={`${
           isMobile ? 'h-[50vh]' : 'h-full'
-        } flex items-center justify-center bg-option-blue relative ${
+        } flex items-center justify-center relative ${
           isMobile ? 'w-full' : isReversed ? 'absolute left-0' : 'absolute right-0'
         } ${
-          selectedOption === (isReversed ? 'B' : 'A') ? 'opacity-50' : ''
-        } ${
-          !answered && 'hover:shadow-lg hover:shadow-blue-600/50'
+          selectedOption === (isReversed ? 'B' : 'A') ? 'opacity-60' : ''
+        } backdrop-blur-sm bg-blue-500/20 border border-blue-500/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] ${
+          !answered && 'hover:bg-blue-500/30 transition-colors duration-300'
         }`}
         onClick={() => !answered && handleVote(isReversed ? 'A' : 'B')}
         whileHover={!answered ? { scale: 1.01 } : {}}
@@ -287,7 +292,7 @@ export default function Home() {
       >
         <div className="max-w-2xl px-6 md:px-8 text-center relative h-full flex flex-col items-center justify-center">
           <motion.h2 
-            className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 drop-shadow-lg"
+            className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -303,7 +308,7 @@ export default function Home() {
                 exit={{ opacity: 0, y: -20 }}
               >
                 <motion.p 
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold drop-shadow-lg"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ 
                     scale: 1, 
@@ -331,12 +336,29 @@ export default function Home() {
                     %
                   </motion.span>
                 </motion.p>
-                <p className="text-base sm:text-lg md:text-xl mt-2 opacity-90">{isReversed ? question.votesA : question.votesB} oy</p>
+                <p className="text-base sm:text-lg md:text-xl mt-3 opacity-80 font-medium tracking-wide">
+                  {isReversed ? question.votesA : question.votesB} oy
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       </motion.div>
+      
+      {/* Sonraki soru butonu */}
+      {answered && (
+        <motion.button
+          onClick={loadRandomQuestion}
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full text-white font-medium shadow-lg transition-colors duration-300 border border-white/20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Sonraki Soru
+        </motion.button>
+      )}
     </main>
   );
 }
