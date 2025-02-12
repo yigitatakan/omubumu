@@ -1,5 +1,5 @@
-import type { Configuration } from 'webpack'
 import type { NextConfig } from 'next'
+import type { Configuration as WebpackConfig } from 'webpack'
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   },
   output: 'standalone',
   assetPrefix: process.env.NODE_ENV === 'production' ? 'https://would-you-rather-tr.vercel.app' : '',
-  webpack: (config: Configuration, { isServer }: { isServer: boolean }) => {
+  webpack: (config: WebpackConfig, { isServer }: { isServer: boolean }) => {
     if (!isServer) {
       config.resolve = {
         ...config.resolve,
