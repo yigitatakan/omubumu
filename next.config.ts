@@ -1,17 +1,22 @@
-/** @type {import('next').NextConfig} */
+import type { Configuration } from 'webpack'
+import type { NextConfig } from 'next'
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
   },
   output: 'standalone',
   assetPrefix: process.env.NODE_ENV === 'production' ? 'https://would-you-rather-tr.vercel.app' : '',
-  webpack: (config, { isServer }) => {
+  webpack: (config: Configuration, { isServer }: { isServer: boolean }) => {
     if (!isServer) {
-      config.resolve.fallback = {
-        fs: false,
-        path: false,
+      config.resolve = {
+        ...config.resolve,
+        fallback: {
+          ...(config.resolve?.fallback || {}),
+          fs: false,
+          path: false,
+        }
       }
     }
     return config
@@ -21,4 +26,4 @@ const nextConfig = {
   }
 }
 
-module.exports = nextConfig
+export default nextConfig

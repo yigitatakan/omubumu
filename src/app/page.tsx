@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { database } from '../../lib/firebase';
 import { ref, get, update } from 'firebase/database';
 import { Question } from '../../types';
@@ -21,7 +21,7 @@ export default function Home() {
   const [isReversed, setIsReversed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const loadRandomQuestion = async () => {
+  const loadRandomQuestion = useCallback(async () => {
     setLoading(true);
     try {
       let questions = allQuestions;
@@ -67,25 +67,9 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [allQuestions, answeredQuestions]);
 
-  useEffect(() => {
-    setMounted(true);
-    loadRandomQuestion();
-  }, []);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const handleVote = async (option: 'A' | 'B') => {
+  const handleVote = useCallback(async (option: 'A' | 'B') => {
     if (!question || answered) return;
 
     setSelectedOption(option);
@@ -118,14 +102,41 @@ export default function Home() {
     } catch (error) {
       console.error('Oy verilirken hata oluştu:', error);
     }
-  };
+  }, [question, answered, allQuestions]);
 
-  const calculatePercentage = (votes: number) => {
-    if (!answered) return '50';
-    const total = totalVotes || (question?.votesA || 0) + (question?.votesB || 0);
-    if (total === 0) return '50';
+  const calculatePercentage = useCallback((votes: number) => {
+    if (!question) return '0';
+    const total = question.votesA + question.votesB;
     return ((votes / total) * 100).toFixed(1);
-  };
+  }, [question]);
+
+  const checkMobile = useCallback(() => {
+    setIsMobile(window.innerWidth <= 768);
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
+    loadRandomQuestion();
+  }, []);
+
+  useEffect(() => {
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
+    checkMobile();
+    loadRandomQuestion();
+  }, [loadRandomQuestion]);
+
+  useEffect(() => {
+    if (question) {
+      calculatePercentage(question.votesA);
+      calculatePercentage(question.votesB);
+    }
+  }, [question, calculatePercentage]);
 
   useEffect(() => {
     if (answered && question) {
