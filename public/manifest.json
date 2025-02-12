@@ -3,6 +3,7 @@
   "short_name": "Would You Rather",
   "description": "İki seçenek arasında tercih yapın, diğer kullanıcıların seçimlerini görün ve eğlenceli bir deneyim yaşayın!",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
@@ -19,6 +20,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
