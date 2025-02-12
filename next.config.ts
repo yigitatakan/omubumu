@@ -1,7 +1,6 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  swcMinify: true,
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
