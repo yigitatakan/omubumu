@@ -1,22 +1,47 @@
 # Would You Rather - Hangisini Tercih Edersin?
 
-Modern ve etkileşimli bir "Hangisini Tercih Edersin?" oyunu. Next.js, Firebase ve Framer Motion kullanılarak geliştirilmiştir.
+Modern ve etkileşimli bir "Hangisini Tercih Edersin?" oyunu. Next.js App Router, Firebase Realtime Database ve Framer Motion kullanılarak geliştirilmiştir.
 
 ## Özellikler
 
-- Modern ve responsive tasarım
-- Rastgele soru sıralaması ve pozisyonlama
-- Akıcı animasyonlar ve geçişler
-- Gerçek zamanlı oylama sonuçları
-- Mobil uyumlu arayüz
+- **Modern ve Responsive Tasarım**
+  - Tailwind CSS ile geliştirilmiş şık arayüz
+  - Her ekran boyutuna uyumlu tasarım
+  - Glassmorphism efektleri
+
+- **Gelişmiş Kullanıcı Deneyimi**
+  - Akıcı animasyonlar ve geçişler (Framer Motion)
+  - Rastgele soru sıralaması
+  - Dinamik pozisyonlama ve renk değişimleri
+  - Mobil dokunmatik optimizasyonu
+
+- **Performans Optimizasyonları**
+  - Next.js App Router ile hızlı sayfa yüklemeleri
+  - Otomatik kod bölümleme
+  - Görüntü optimizasyonu
+  - SEO dostu yapı
+
+- **Gerçek Zamanlı Özellikler**
+  - Firebase Realtime Database ile anlık oy güncellemeleri
+  - Yüzdelik hesaplamaları ve animasyonlu gösterim
+  - Oylanan soruların takibi
 
 ## Teknolojiler
 
-- Next.js 13
-- Firebase Realtime Database
-- Tailwind CSS
-- Framer Motion
-- TypeScript
+- **Frontend**
+  - Next.js 13+ (App Router)
+  - TypeScript
+  - Tailwind CSS
+  - Framer Motion
+
+- **Backend & Veritabanı**
+  - Firebase Realtime Database
+  - Firebase Analytics
+
+- **Diğer Araçlar**
+  - ESLint
+  - PostCSS
+  - Google Analytics
 
 ## Kurulum
 
@@ -31,7 +56,7 @@ cd omubumu
 npm install
 ```
 
-3. `.env` dosyasını oluşturun ve Firebase bilgilerinizi ekleyin:
+3. `.env.local` dosyasını oluşturun ve Firebase bilgilerinizi ekleyin:
 ```env
 NEXT_PUBLIC_FIREBASE_API_KEY=your_api_key
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_auth_domain
@@ -50,22 +75,45 @@ npm run dev
 
 5. Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresini açın
 
-## Özellikler
+## Özellik Detayları
 
-- Her soru için iki seçenek
+### Soru Mekanizması
+- Rastgele soru seçimi
+- Daha önce cevaplanmış soruların takibi
+- Soru havuzunun tükenmesi durumunda otomatik sıfırlama
+
+### Oylama Sistemi
+- Anlık oy güncellemeleri
 - Animasyonlu yüzde gösterimi
-- Dinamik ekran bölünmesi
-- Rastgele soru pozisyonları
-- Gerçek zamanlı oy sayımı
+- Seçenek değiştirme engelleme
+
+### Kullanıcı Arayüzü
+- Mobil ve masaüstü için optimize edilmiş tasarım
+- Karanlık/aydınlık mod desteği
+- Dokunmatik ekran optimizasyonu
+
+## SEO ve Performans
+
+- Sayfa başlıkları ve meta açıklamaları
+- Open Graph etiketleri
+- Robots.txt ve sitemap.xml
+- Google Analytics entegrasyonu
+- Lighthouse skorları optimizasyonu
 
 ## Katkıda Bulunma
 
-1. Bu repoyu fork edin
+1. Bu repoyu forklayın
 2. Yeni bir branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Yeni özellik: Muhteşem özellik'`)
+3. Değişikliklerinizi commit edin (`git commit -m 'feat: Add amazing feature'`)
 4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Bir Pull Request oluşturun
+5. Pull Request oluşturun
 
 ## Lisans
 
-MIT Lisansı altında dağıtılmaktadır. Daha fazla bilgi için `LICENSE` dosyasına bakın.
+Bu proje MIT lisansı altında lisanslanmıştır. Daha fazla bilgi için [LICENSE](LICENSE) dosyasına bakın.
+
+## İletişim
+
+Yiğit Atakan - [@yigitatakan](https://github.com/yigitatakan)
+
+Proje Linki: [https://github.com/yigitatakan/omubumu](https://github.com/yigitatakan/omubumu)
